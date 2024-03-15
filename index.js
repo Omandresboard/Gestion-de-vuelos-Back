@@ -1,0 +1,46 @@
+import express from "express";
+import dotenv from "dotenv";
+import cors from "cors";
+import vuelosRoutes from "./routes/vuelosRoutes.js";
+import registroRoutes from "./routes/ingresoRoutes.js";
+import pasajeroRoutes from "./routes/pasajeroRoutes.js";
+import mysql2 from "mysql2";
+import miconny from "express-myconnection";
+
+const app = express();
+const PORT = 3000;
+app.use(express.json());
+dotenv.config();
+
+const dboptions = {
+  host: "localhost",
+  port: "3306",
+  user: "root",
+  database: "el_dorado_db",
+};
+
+const corsOptions = {
+  origin: "*",
+};
+
+app.use(cors(corsOptions));
+
+app.use(miconny(mysql2, dboptions, "single"));
+
+app.use("/api/usuarios", registroRoutes);
+app.use("/api/pasajeros", pasajeroRoutes);
+app.use("/api/vuelos", vuelosRoutes);
+app.use("/imagenes", express.static("imagenes"));
+
+app.get("/vuelos", async (req, res) => {
+  try {
+    const vuelos = await db.obtenerVuelos();
+    res.json(vuelos);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+app.listen(PORT, () => {
+  console.log(`Servidor escuchando por los cambios en el puerto ${PORT}`);
+});
