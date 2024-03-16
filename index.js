@@ -45,3 +45,7 @@ app.get("/vuelos", async (req, res) => {
 app.listen(PORT, () => {
   console.log(`Servidor escuchando por los cambios en el puerto ${PORT}`);
 });
+
+app.use((req, res) => {
+  res.status(404).json({ message: 'No se encontró la ruta esperada.' });
+});
