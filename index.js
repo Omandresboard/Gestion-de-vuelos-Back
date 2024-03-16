@@ -13,10 +13,11 @@ app.use(express.json());
 dotenv.config();
 
 const dboptions = {
-  host: "localhost",
-  port: "3306",
+  host: "roundhouse.proxy.rlwy.net",
+  port: "44795",
   user: "root",
-  database: "el_dorado_db",
+  password: "oaEftwDEndfQsZFLfdHJdcwDxQNpfSeS",
+  database: "railway",
 };
 
 const corsOptions = {
