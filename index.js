@@ -13,10 +13,11 @@ app.use(express.json());
 dotenv.config();
 
 const dboptions = {
-  host: "localhost",
-  port: "3306",
+  host: "roundhouse.proxy.rlwy.net",
+  port: "44795",
   user: "root",
-  database: "el_dorado_db",
+  password: "oaEftwDEndfQsZFLfdHJdcwDxQNpfSeS",
+  database: "railway",
 };
 
 const corsOptions = {
@@ -47,4 +48,8 @@ app.listen(PORT, () => {
 
 app.use((req, res) => {
   res.status(404).json({ message: 'No se encontró la ruta esperada.' });
+<<<<<<< HEAD
 });
+=======
+});
+>>>>>>> 37595ed40b9f9c5bc6018de80ac09887bc482e2f
