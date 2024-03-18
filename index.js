@@ -6,17 +6,21 @@ import registroRoutes from "./routes/ingresoRoutes.js";
 import pasajeroRoutes from "./routes/pasajeroRoutes.js";
 import mysql2 from "mysql2";
 import miconny from "express-myconnection";
+import { PORT } from "./config/config.js"
+import { DB_HOST, DB_NAME, DB_PORT, DB_USER, DB_PASSWORD } from "./config/config.js";
+
 
 const app = express();
-const PORT = 3000;
+
 app.use(express.json());
 dotenv.config();
 
 const dboptions = {
-  host: "localhost",
-  port: "3306",
-  user: "root",
-  database: "el_dorado_db",
+  host: DB_HOST,
+  port: DB_PORT,
+  user: DB_USER,
+  database: DB_NAME,
+  password: DB_PASSWORD
 };
 
 const corsOptions = {
